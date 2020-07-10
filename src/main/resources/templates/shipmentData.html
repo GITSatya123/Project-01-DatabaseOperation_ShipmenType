@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h1 style="color: blue; text-align: center">Shipment Details
+					page</h1>
+			</div>
+			<div class="card-body">
+			<a th:href="@{/stype/excel}" class="btn btn-warning">Excel-Export</a>
+				<table class="table table-hover">
+					<tr class="bg-info text-white text-center">
+						<th>sid</th>
+						<th>sMode</th>
+						<th>sCode</th>
+						<th>enable</th>
+						<th>sGrade</th>
+						<th>description</th>
+						<th colspan="4">Operation</th>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td th:text="${ob.sid}"></td>
+						<td th:text="${ob.shipmentMode}"></td>
+						<td th:text="${ob.shipmentCode}"></td>
+						<td th:text="${ob.enableShipment}"></td>
+						<td th:text="${ob.shipmentGrade}"></td>
+						<td th:text="${ob.description}"></td>
+						<td><a th:href="@{/stype/delete/{id}(id=${ob.sid})}" class="btn btn-danger">
+						<img th:src="@{/images/delete.png/}" class="btn btn-warning" height="40" width="60"/></a></td>
+						<td><a th:href="@{/stype/edit/{id}(id=${ob.sid})}" class="btn btn-success">
+						<img th:src="@{/images/edit.jpg/}" class="btn btn-info" height="40" width="60"/></a></td>
+						<td><a th:href="@{/stype/excel/{id}(id=${ob.sid})}" class="btn btn-warning">Excel</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="card-footer bg-info text-white">
+				<span th:text="${message}"></span>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>
